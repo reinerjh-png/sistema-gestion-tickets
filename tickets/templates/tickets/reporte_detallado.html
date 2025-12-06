@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Tickets Vendidos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .dashboard {
+            background: rgba(0, 0, 0, 0.45);
+            padding: 22px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 1100px;
+            color: white;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(20px, 4vw, 28px);
+            margin-bottom: 18px;
+        }
+
+        /* ✅ BARRA RESPONSIVA */
+        .barra-acciones {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.6);
+        }
+
+        .btn.pdf {
+            background: linear-gradient(135deg, #ff4b2b, #ff416c);
+        }
+
+        .btn.venta {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+
+        /* ✅ TABLA RESPONSIVA */
+        .tabla-container {
+            overflow-x: auto;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            min-width: 650px;
+            /* ✅ evita que se rompa */
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        }
+
+        th,
+        td {
+            padding: 12px 8px;
+            text-align: center;
+            word-break: break-word;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        tbody tr:hover {
+            background: rgba(0, 255, 255, 0.12);
+        }
+
+        footer {
+            margin-top: 22px;
+            text-align: center;
+            font-size: 11px;
+            color: #ccc;
+        }
+
+        /* ✅ AJUSTES ESPECIALES PARA CELULARES */
+        @media (max-width: 600px) {
+            .dashboard {
+                padding: 16px;
+                border-radius: 16px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 10px 6px;
+                font-size: 12px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>🎟️ Lista Oficial de Tickets para el Sorteo</h1>
+
+        <!-- ✅ BARRA DE ACCIONES -->
+        <div class="barra-acciones">
+
+            <!-- ✅ PDF TICKETS PARA VENTA -->
+            <a href="/tickets/exportar-tickets-venta/" class="btn venta">
+                <i class="fa-solid fa-ticket"></i> Descargar Tickets (Venta)
+            </a>
+
+            <!-- ✅ PDF MINI-TICKETS PARA EL SORTEO -->
+            <a href="/tickets/exportar-pdf/" class="btn pdf">
+                <i class="fa-solid fa-file-pdf"></i> Descargar Tickets (Sorteo)
+            </a>
+
+            <!-- ✅ VOLVER -->
+            <a href="/tickets/reporte/" class="btn">
+                <i class="fa-solid fa-arrow-left"></i> Volver al Reporte General
+            </a>
+
+        </div>
+
+        <!-- ✅ TABLA -->
+        <div class="tabla-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>N° Ticket</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Celular</th>
+                        <th>Vendedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in vendidos %}
+                    <tr>
+                        <td>{{ c.ticket.numero }}</td>
+                        <td>{{ c.nombres }}</td>
+                        <td>{{ c.apellidos }}</td>
+                        <td>{{ c.celular }}</td>
+                        <td>{{ c.ticket.vendedor.nombres }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            © 2025 - Detalle Oficial de Tickets Vendidos | Sistema de Rifas
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

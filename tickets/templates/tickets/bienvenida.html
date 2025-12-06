@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sorteo Oficial - Honda Motors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #000000, #b11217);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 15px;
+        }
+
+        .panel {
+            background: rgba(0, 0, 0, 0.45);
+            padding: 45px 35px;
+            border-radius: 28px;
+            text-align: center;
+            width: 100%;
+            max-width: 520px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 1.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 70px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: #ff1e1e;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #dddddd;
+            margin-bottom: 25px;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .botones a {
+            text-decoration: none;
+        }
+
+        .botones button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin {
+            background: linear-gradient(135deg, #ff1e1e, #b11217);
+            color: white;
+        }
+
+        .admin:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 18px rgba(255, 30, 30, 0.6);
+        }
+
+        .comprador {
+            background: linear-gradient(135deg, #1fa2ff, #12d8fa);
+            color: white;
+        }
+
+        .comprador:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 18px rgba(0, 180, 255, 0.6);
+        }
+
+        .premios {
+            margin-top: 25px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .premios h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .premios ul {
+            list-style: none;
+            font-size: 14px;
+            color: #f1f1f1;
+        }
+
+        .premios li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .premios i {
+            font-size: 18px;
+        }
+
+        .oro {
+            color: gold;
+        }
+
+        .plata {
+            color: silver;
+        }
+
+        .bronce {
+            color: #cd7f32;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .panel {
+                padding: 30px 22px;
+            }
+
+            .logo {
+                font-size: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="panel">
+
+        <div class="logo">
+            <i class="fa-solid fa-motorcycle"></i> <span>Honda</span>
+        </div>
+
+        <h1>Sorteo Oficial Honda Motors</h1>
+        <p class="subtitle">
+            Participa de manera segura por increíbles premios exclusivos.
+        </p>
+
+        <div class="botones">
+
+            <a href="/admin/">
+                <button class="admin">
+                    <i class="fa-solid fa-user-shield"></i> Acceso Administrador
+                </button>
+            </a>
+
+            <a href="/tickets/login-ticket/">
+                <button class="comprador">
+                    <i class="fa-solid fa-ticket"></i> Registro de Comprador
+                </button>
+            </a>
+
+        </div>
+
+        <!-- ✅ PREMIOS -->
+        <div class="premios">
+            <h3>🏆 Premios del Sorteo</h3>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-trophy oro"></i>
+                    1er Premio: Moto Honda Navi 110
+                </li>
+                <li>
+                    <i class="fa-solid fa-helmet-safety plata"></i>
+                    2do Premio: Casco Integral Certificado
+                </li>
+                <li>
+                    <i class="fa-solid fa-money-bill-wave bronce"></i>
+                    3er Premio: Dinero en Efectivo
+                </li>
+            </ul>
+        </div>
+
+        <footer>
+            © 2025 - Honda Motors | Sistema Oficial de Sorteos
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

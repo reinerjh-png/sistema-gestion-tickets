@@ -1,0 +1,67 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block content %}
+{{ block.super }}
+
+<!-- PANEL DE RIFAS (Inyectado vía JS para no romper layout) -->
+<div id="custom-rifas-panel" style="display: none;">
+    <div style="
+        margin-top: 30px; 
+        padding: 20px; 
+        background: #fff; 
+        border: 1px solid #eee; 
+        border-radius: 4px; 
+        margin-bottom: 20px;
+    ">
+        <h2 style="
+            margin: 0 0 15px 0; 
+            font-size: 14px; 
+            font-weight: bold; 
+            color: #333; 
+            text-transform: uppercase; 
+            border-bottom: 2px solid #417690; 
+            padding-bottom: 8px;
+        ">
+            🎟️ Gestionar Sistema de Rifas
+        </h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <a href="/tickets/generar/" class="button"
+                style="background:#0d6efd; color:white; padding:10px 15px; border-radius:4px; font-weight:bold; text-decoration:none;">+
+                Generar Tickets</a>
+            <a href="/tickets/repartir/" class="button"
+                style="background:#6610f2; color:white; padding:10px 15px; border-radius:4px; font-weight:bold; text-decoration:none;">👥
+                Asignar Tickets</a>
+            <a href="/tickets/reporte/" class="button"
+                style="background:#198754; color:white; padding:10px 15px; border-radius:4px; font-weight:bold; text-decoration:none;">📊
+                Reporte</a>
+            <a href="/tickets/reporte-detallado/" class="button"
+                style="background:#fd7e14; color:white; padding:10px 15px; border-radius:4px; font-weight:bold; text-decoration:none;">🎟️
+                Sorteo</a>
+            <!-- BOTÓN PDF ELIMINADO -->
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var contentMain = document.getElementById("content-main");
+        var myPanel = document.getElementById("custom-rifas-panel");
+        if (contentMain && myPanel) {
+            contentMain.appendChild(myPanel);
+            myPanel.style.display = "block";
+        }
+    });
+</script>
+
+<style>
+    #nav-sidebar {
+        display: none !important;
+    }
+
+    .main.shifted>.content {
+        margin-left: 0 !important;
+    }
+</style>
+
+{% endblock %}
